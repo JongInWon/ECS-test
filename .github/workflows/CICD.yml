@@ -5,14 +5,12 @@ name: CI/CD
 on:
   push:
     branches:
-      - "main"    # main 브랜치에 push될 때
-      - "develop" # develop 브랜치에 push될 때
+      - "main"
+      - "develop"
   pull_request:
     branches:
-      - "main"    # main 브랜치로 PR 생성될 때
-      - "develop" # develop 브랜치로 PR 생성될 때
-  release:
-    types: [published] # GitHub Release가 publish될 때
+      - "main"
+      - "develop"
 
 # 전역 환경 변수 설정
 env:
@@ -96,7 +94,7 @@ jobs:
   # 배포 작업
   deploy:
     needs: [build, test]  # 빌드와 테스트가 모두 성공적으로 완료된 후에 실행
-    if: github.event_name == 'release'  # GitHub Release 생성 시에만 배포 실행
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -110,9 +108,8 @@ jobs:
           name: build-artifact
           path: build/libs
 
-      # Docker 이미지 태그 버전 설정
       - name: Set version
-        run: echo "VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+        run: echo "VERSION=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       # AWS 접근을 위한 인증 설정
       - name: Configure AWS credentials
