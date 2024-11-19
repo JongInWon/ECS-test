@@ -1,11 +1,11 @@
-FROM eclipse-temurin:17-jre-jammy AS extractor
+FROM --platform=linux/arm64 eclipse-temurin:17-jre-jammy AS extractor
 
 WORKDIR /extract
 COPY build/libs/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
 # Run stage
-FROM eclipse-temurin:17-jre-jammy
+FROM --platform=linux/arm64 eclipse-temurin:17-jre-jammy
 
 WORKDIR /app
 
