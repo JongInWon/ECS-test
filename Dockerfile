@@ -1,11 +1,11 @@
-FROM --platform=linux/arm64 amazoncorretto:17.0.7-al2023-headless AS builder
+FROM amazoncorretto:17.0.7-al2023-headless AS builder
 
 WORKDIR /build
 
 COPY build/libs/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM --platform=linux/arm64 amazoncorretto:17.0.7-al2023-headless
+FROM amazoncorretto:17.0.7-al2023-headless
 
 WORKDIR /app
 
