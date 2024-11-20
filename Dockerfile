@@ -2,11 +2,9 @@ FROM --platform=linux/arm64 amazoncorretto:17.0.7-al2023-headless AS builder
 
 WORKDIR /build
 
-# 빌드 결과물 복사
 COPY build/libs/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-# Run stage
 FROM --platform=linux/arm64 amazoncorretto:17.0.7-al2023-headless
 
 WORKDIR /app
