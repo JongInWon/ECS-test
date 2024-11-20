@@ -20,10 +20,7 @@ COPY --from=builder /build/spring-boot-loader/ ./
 COPY --from=builder /build/snapshot-dependencies/ ./
 COPY --from=builder /build/application/ ./
 
-RUN chown -R spring:spring /app
-USER spring
-
-EXPOSE 8080
+EXPOSE 80
 ENTRYPOINT ["java"]
 CMD ["-XX:+UseContainerSupport", \
      "-XX:MaxRAMPercentage=75.0", \
