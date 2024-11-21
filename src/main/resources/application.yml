@@ -3,34 +3,12 @@ spring:
     default: local
     group:
       local: local,secret
+      dev: dev,secret
   jpa:
     properties:
       hibernate:
         format_sql: true
         default_batch_fetch_size: 100
-    show-sql: true
-
 
 server:
   port: 8080
-
----
-spring:
-  config:
-    activate:
-      on-profile: local
-  jpa:
-    hibernate:
-      ddl-auto: update
-
----
-spring:
-  config:
-    activate:
-      on-profile: test
-  jpa:
-    hibernate:
-      ddl-auto: create
-
-logging.level:
-  org.hibernate.SQL: debug
