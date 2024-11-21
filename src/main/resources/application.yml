@@ -1,18 +1,36 @@
+spring:
+  profiles:
+    default: local
+    group:
+      local: local,secret
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+    show-sql: true
+
+
 server:
   port: 8080
 
+---
 spring:
-  datasource:
-    url: jdbc:h2:mem:testuserdb
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
-    hikari:
-      connection-timeout: 3000
-      maximum-pool-size: 5
-      max-lifetime: 30000
-
+  config:
+    activate:
+      on-profile: local
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+logging.level:
+  org.hibernate.SQL: debug
