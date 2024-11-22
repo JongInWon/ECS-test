@@ -7,8 +7,27 @@ spring:
   jpa:
     properties:
       hibernate:
+        show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 11000
+
+logging.level:
+  org.hibernate.SQL: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    health:
+      show-details: always
+
 
 server:
   port: 8080
