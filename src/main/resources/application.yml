@@ -13,14 +13,14 @@ spring:
       minimum-idle: 2
       connection-timeout: 11000
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: health,metrics,info
-#  endpoint:
-#    health:
-#      show-details: always
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    health:
+      show-details: always
 
 server:
   port: 8080
