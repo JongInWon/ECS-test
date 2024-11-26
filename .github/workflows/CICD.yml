@@ -34,7 +34,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean build -x test --parallel
+        run: ./gradlew clean build -x test
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -70,7 +70,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run tests
-        run: ./gradlew test --parallel --continue
+        run: ./gradlew test --continue
 
       - name: Test Report
         uses: dorny/test-reporter@v1
