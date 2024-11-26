@@ -34,7 +34,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build -x test --parallel
+        run: ./gradlew clean build -x test --parallel
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
