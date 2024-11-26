@@ -41,8 +41,11 @@ tasks.named('test') {
 }
 
 bootJar {
-    // 계층화 Jar
     layered {
         enabled = true
     }
+}
+
+jar {
+    enabled = false
 }
